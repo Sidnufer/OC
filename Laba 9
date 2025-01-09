@@ -1,0 +1,49 @@
+mihail@mihailWB:~$ sudo apt update
+[sudo] пароль для mihail: 
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu noble InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu noble-updates InRelease              
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu noble-backports InRelease            
+Сущ:4 http://security.ubuntu.com/ubuntu noble-security InRelease               
+Чтение списков пакетов… Готово            
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Может быть обновлён 91 пакет. Запустите «apt list --upgradable» для показа.
+mihail@mihailWB:~$ sudo apt install nginx -y
+Чтение списков пакетов… Готово
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Уже установлен пакет nginx самой новой версии (1.24.0-2ubuntu7.1).
+Обновлено 0 пакетов, установлено 0 новых пакетов, для удаления отмечено 0 пакетов, и 91 пакетов не обновлено.
+mihail@mihailWB:~$ sudo dpkg --remove --force-depends nginx
+dpkg: nginx: имеются проблемы с зависимостями, но по вашему указанию
+он всё равно будет удалён:
+ nginx-common зависит от nginx (>= 1.24.0-2ubuntu7.1).
+ nginx-common зависит от nginx (<< 1.24.0-2ubuntu7.1.1~).
+ nginx-common зависит от nginx (>= 1.24.0-2ubuntu7.1).
+ nginx-common зависит от nginx (<< 1.24.0-2ubuntu7.1.1~).
+
+(Чтение базы данных … на данный момент установлено 190429 файлов и каталогов.)
+Удаляется nginx (1.24.0-2ubuntu7.1) …
+Обрабатываются триггеры для man-db (2.12.0-4build2) …
+mihail@mihailWB:~$ nginx -v
+Команда «nginx» не найдена, но может быть установлена с помощью:
+sudo apt install nginx
+mihail@mihailWB:~$ sudo snap install htop
+snap-пакет "htop" уже установлен, см. 'snap help refresh'
+mihail@mihailWB:~$ snap list
+Название                   Версия           Правка  Канал            Издатель    Примечание
+bare                       1.0              5       latest/stable    canonical✓  base
+core22                     20241001         1663    latest/stable    canonical✓  base
+firefox                    132.0-1          5187    latest/stable/…  mozilla✓    -
+firmware-updater           0+git.7983059    147     1/stable/…       canonical✓  -
+gnome-42-2204              0+git.510a601    176     latest/stable/…  canonical✓  -
+gtk-common-themes          0.1-81-g442e511  1535    latest/stable/…  canonical✓  -
+htop                       3.3.0            4407    latest/stable    maxiberta✪  -
+snap-store                 0+git.4fcd62b7   1218    2/stable/…       canonical✓  -
+snapd                      2.63             21759   latest/stable    canonical✓  snapd
+snapd-desktop-integration  0.9              253     latest/stable/…  canonical✓  -
+mihail@mihailWB:~$ sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+mihail@mihailWB:~$ sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+mihail@mihailWB:~$ sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+mihail@mihailWB:~$ sudo iptables -P INPUT DROP
+mihail@mihailWB:~$ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
