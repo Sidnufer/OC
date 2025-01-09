@@ -1,0 +1,27 @@
+mihail@mihailWB:~$ echo "privet" > file.txt
+mihail@mihailWB:~$ cat /etc/* > all_configs.txt 2> errors.txt
+mihail@mihailWB:~$ ls -1 | cut -c 1-30 | sort | uniq
+all_configs.txt
+errors.txt
+file.txt
+snap
+Видео
+Документы
+Загрузки
+Изображения
+Музыка
+Общедоступные
+Рабочий стол
+Шаблоны
+mihail@mihailWB:~$ sudo nano /etc/ssh/sshd_config
+[sudo] пароль для mihail: 
+mihail@mihailWB:~$ sudo systemctl restart ssh.service
+mihail@mihailWB:~$ sudo nano /etc/ssh/sshd_config
+mihail@mihailWB:~$ cat > file1.txt
+privetx2
+mihail@mihailWB:~$ mc
+mihail@mihailWB:~$ pgrep -x mc
+3380
+mihail@mihailWB:~$ sudo kill -9 3380
+[sudo] пароль для mihail: 
+mihail@mihailWB:~$ pgrep -x mc
