@@ -1,0 +1,151 @@
+mihail@mihailWB:~$ hostnamectl
+ Static hostname: mihailWB
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 23e7ad0bb235405593adcac2838e00e0
+         Boot ID: 485f5ee0bbaa4ad0a15863c949bdc35b
+  Virtualization: oracle
+Operating System: Ubuntu 24.04.1 LTS              
+          Kernel: Linux 6.8.0-45-generic
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+Firmware Version: VirtualBox
+   Firmware Date: Fri 2006-12-01
+    Firmware Age: 17y 10month 1w 3d  
+    
+mihail@mihailWB:~$ mkdir students
+mihail@mihailWB:~$ mkdir mentors
+mihail@mihailWB:~$ cd students/
+
+mihail@mihailWB:~/students$ touch students_list.txt
+mihail@mihailWB:~/students$ cd ~/mentors
+mihail@mihailWB:~/mentors$ touch mentors_list.txt
+mihail@mihailWB:~/mentors$ mv montors_list.txt ~/students
+mihail@mihailWB:~/mentors$ mv mentors_list.txt ~/students
+mihail@mihailWB:~/mentors$ cd ~/students
+mihail@mihailWB:~/students$ ls
+mentors_list.txt  students_list.txt
+mihail@mihailWB:~/students$  cd ~/
+
+mihail@mihailWB:~$ ls
+ mentors   snap       Документы     Музыка          Шаблоны
+ ok        students   Загрузки      Общедоступные
+ ok.pub    Видео      Изображения  'Рабочий стол'
+mihail@mihailWB:~$ rmdir mentors
+mihail@mihailWB:~$ ls
+ ok       snap       Видео       Загрузки      Музыка         'Рабочий стол'
+ ok.pub   students   Документы   Изображения   Общедоступные   Шаблоны
+
+mihail@mihailWB:~$ rmdir mentors
+mihail@mihailWB:~$ ls
+ ok       snap       Видео       Загрузки      Музыка         'Рабочий стол'
+ ok.pub   students   Документы   Изображения   Общедоступные   Шаблоны
+mihail@mihailWB:~$ mv -v students students_and_mentors
+переименован 'students' -> 'students_and_mentors'
+mihail@mihailWB:~$ rm -r students_and_mentors
+mihail@mihailWB:~$ ls
+ ok       snap    Документы   Изображения   Общедоступные   Шаблоны
+ ok.pub   Видео   Загрузки    Музыка       'Рабочий стол'
+
+mihail@mihailWB:~$ sudo su
+[sudo] пароль для mihail: 
+root@mihailWB:/home/mihail# sudo ufw allow ssh
+Пропуск добавления уже существующего правила
+Пропуск добавления уже существующего правила (v6)
+
+root@mihailWB:/home/mihail# systemctl status ssh
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: ena>
+     Active: active (running) since Fri 2024-10-11 00:14:43 MSK; 43min ago
+TriggeredBy: ● ssh.socket
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 4144 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 4145 (sshd)
+      Tasks: 1 (limit: 9857)
+     Memory: 2.3M (peak: 3.2M)
+        CPU: 173ms
+     CGroup: /system.slice/ssh.service
+             └─4145 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+окт 11 00:38:49 mihailWB sshd[4446]: Failed password for invalid user mihailWB >
+окт 11 00:38:50 mihailWB sshd[4446]: Connection closed by invalid user mihailWB>
+окт 11 00:38:50 mihailWB sshd[4446]: PAM 2 more authentication failures; lognam>
+окт 11 00:39:19 mihailWB sshd[4451]: Invalid user mihailWB from 10.0.2.15 port >
+окт 11 00:39:20 mihailWB sshd[4451]: Failed none for invalid user mihailWB from>
+окт 11 00:39:23 mihailWB sshd[4451]: Failed password for invalid user mihailWB >
+окт 11 00:39:24 mihailWB sshd[4451]: Failed password for invalid user mihailWB >
+окт 11 00:39:24 mihailWB sshd[4451]: Connection closed by invalid user mihailWB>
+окт 11 00:40:11 mihailWB sshd[4455]: Accepted password for mihail from 10.0.2.1>
+окт 11 00:40:11 mihailWB sshd[4455]: pam_unix(sshd:session): session opened for>
+
+root@mihailWB:/home/mihail# sudo apt install openssh-server
+Чтение списков пакетов… Готово
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Уже установлен пакет openssh-server самой новой версии (1:9.6p1-3ubuntu13.5).
+Обновлено 0 пакетов, установлено 0 новых пакетов, для удаления отмечено 0 пакетов, и 35 пакетов не обновлено.
+
+root@mihailWB:/home/mihail# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd
+
+00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:5b:b9:90 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 83090sec preferred_lft 83090sec
+    inet6 fd00::54dd:2c92:ca31:11e3/64 scope global temporary dynamic 
+       valid_lft 86390sec preferred_lft 14390sec
+    inet6 fd00::a00:27ff:fe5b:b990/64 scope global dynamic mngtmpaddr 
+       valid_lft 86390sec preferred_lft 14390sec
+    inet6 fe80::a00:27ff:fe5b:b990/64 scope link 
+       valid_lft forever preferred_lft forever
+
+root@mihailWB:/home/mihail# ssh mihail@10.0.2.15
+mihail@10.0.2.15's password: 
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+Расширенное поддержание безопасности (ESM) для Applications выключено.
+
+27 обновлений может быть применено немедленно.
+Чтобы просмотреть дополнительные обновления выполните: apt list --upgradable
+
+Включите ESM Apps для получения дополнительных будущих обновлений безопасности.
+Смотрите https://ubuntu.com/esm или выполните: sudo pro status
+
+Last login: Fri Oct 11 00:40:11 2024 from 10.0.2.15
+
+mihail@mihailWB:~$ ssh-keygen -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/mihail/.ssh/id_rsa): key
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in key
+Your public key has been saved in key.pub
+The key fingerprint is:
+SHA256:jLJJ9VINP8YOtGBuIJv28AhT4QHUX5Ff40KKKCuFK9c mihail@mihailWB
+The key's randomart image is:
++---[RSA 4096]----+
+|oo*.. o.=        |
+| o * + = B o     |
+|o.* o * B O .    |
+|.=.* = * * o     |
+| o+.= o S o      |
+|+...E+ .         |
+|o.  o            |
+|                 |
+|                 |
++----[SHA256]-----+
+
+mihail@mihailWB:~$ ssh-copy-id mihail@10.0.2.15
+/usr/bin/ssh-copy-id: ERROR: No identities found
