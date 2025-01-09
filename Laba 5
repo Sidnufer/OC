@@ -1,0 +1,14 @@
+mihail@mihailWB:~$ sudo groupadd test
+mihail@mihailWB:~$ sudo usermod -aG test pivo1
+mihail@mihailWB:~$ sudo usermod -aG test pivo2
+mihail@mihailWB:~$ sudo mkdir /shared
+mihail@mihailWB:~$ sudo chgrp test /shared
+mihail@mihailWB:~$ sudo chmod 2775 /shared
+mihail@mihailWB:~$ sudo mkdir /shared/private
+mihail@mihailWB:~$ sudo chgrp test /shared/private
+mihail@mihailWB:~$ sudo chmod 1770 /shared/private
+mihail@mihailWB:~$ sudo mkdir /hidden
+mihail@mihailWB:~$ sudo touch /hidden/file1 /hidden/file2 /hidden/file3
+mihail@mihailWB:~$ sudo chmod 710 /hidden
+mihail@mihailWB:~$ ls /hidden
+file1  file2  file3
