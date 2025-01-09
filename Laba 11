@@ -1,0 +1,87 @@
+mihail@mihailWB:~/driver$ sudo mknod /dev/mychardev c 240 0
+[sudo] password for admin: 
+mihail@mihailWB:~/driver$ sudo chmod 666 /dev/mychardev
+mihail@mihailWB:~/driver$ echo "Hello, World!" > /dev/mychardev
+mihail@mihailWB:~/driver$ cat /dev/mychardev
+Hello, World!
+
+КОД ПРОГРАММЫ:
+#include <linux/module.h>
+#include <linux/fs.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+#define DEVICE_NAME "mychardev"
+
+static dev_t dev_num;
+static struct cdev my_cdev;
+static char message[256] = {0};
+static size_t message_len = 0;
+
+static int dev_open(struct inode *inode, struct file *file) {
+    printk(KERN_INFO "mychardev: Device opened\n");
+    return 0;
+}
+
+static ssize_t dev_read(struct file *file, char __user *buf, size_t len, loff_t *offset) {
+    if (*offset >= message_len) return 0;
+    if (len > message_len - *offset) len = message_len - *offset;
+
+    if (copy_to_user(buf, message + *offset, len)) return -EFAULT;
+    *offset += len;
+    printk(KERN_INFO "mychardev: Data read\n");
+    return len;
+}
+
+static ssize_t dev_write(struct file *file, const char __user *buf, size_t len, loff_t *offset) {
+    if (len > sizeof(message) - 1) len = sizeof(message) - 1;
+
+    if (copy_from_user(message, buf, len)) return -EFAULT;
+    message[len] = '\0';
+    message_len = len;
+    printk(KERN_INFO "mychardev: Data written: %s\n", message);
+    return len;
+}
+
+static int dev_release(struct inode *inode, struct file *file) {
+    printk(KERN_INFO "mychardev: Device closed\n");
+    return 0;
+}
+
+static struct file_operations fops = {
+    .owner = THIS_MODULE,
+    .open = dev_open,
+    .read = dev_read,
+    .write = dev_write,
+    .release = dev_release,
+};
+
+static int __init mychardev_init(void) {
+    if (alloc_chrdev_region(&dev_num, 0, 1, DEVICE_NAME) < 0) {
+        printk(KERN_ALERT "mychardev: Failed to allocate major number\n");
+        return -1;
+    }
+
+    cdev_init(&my_cdev, &fops);
+    if (cdev_add(&my_cdev, dev_num, 1) < 0) {
+        unregister_chrdev_region(dev_num, 1);
+        printk(KERN_ALERT "mychardev: Failed to add cdev\n");
+        return -1;
+    }
+
+    printk(KERN_INFO "mychardev: Device registered with major number %d\n", MAJOR(dev_num));
+    return 0;
+}
+
+static void __exit mychardev_exit(void) {
+    cdev_del(&my_cdev);
+    unregister_chrdev_region(dev_num, 1);
+    printk(KERN_INFO "mychardev: Device unregistered\n");
+}
+
+module_init(mychardev_init);
+module_exit(mychardev_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Your Name");
+MODULE_DESCRIPTION("Simple Linux Character Device Driver");
