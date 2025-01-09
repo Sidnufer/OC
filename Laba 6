@@ -1,0 +1,76 @@
+mihail@mihailWB:~$ #!/bin/bash
+mihail@mihailWB:~$ for i in {1..3}; do echo $USER; done
+mihail
+mihail
+mihail
+mihail@mihailWB:~$ #!/bin/bash
+mihail@mihailWB:~$ number=0
+mihail@mihailWB:~$ while [ $number -le 100 ];
+> do
+> echo $number
+> number=$(( number+2))
+> done
+0
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+22
+24
+26
+28
+30
+32
+34
+36
+38
+40
+42
+44
+46
+48
+50
+52
+54
+56
+58
+60
+62
+64
+66
+68
+70
+72
+74
+76
+78
+80
+82
+84
+86
+88
+90
+92
+94
+96
+98
+100
+mihail@mihailWB:~$ nano test.txt
+mihail@mihailWB:~$ cp test.txt test.txt.bak
+mihail@mihailWB:~$ crontab -e
+no crontab for mihail - using an empty one
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        <---- easiest
+  2. /usr/bin/mcedit
+  3. /usr/bin/vim.tiny
+  4. /bin/ed
+
+Choose 1-4 [1]: 1     
+crontab: installing new crontab
