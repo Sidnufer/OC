@@ -1,0 +1,232 @@
+mihail@mihailWB:~$ sudo apt-get update
+[sudo] пароль для mihail: 
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu noble InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu noble-updates InRelease              
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu noble-backports InRelease            
+Сущ:4 https://download.docker.com/linux/ubuntu noble InRelease                 
+Сущ:5 http://security.ubuntu.com/ubuntu noble-security InRelease               
+Чтение списков пакетов… Готово            
+mihail@mihailWB:~$ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+Чтение списков пакетов… Готово
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Уже установлен пакет ca-certificates самой новой версии (20240203).
+ca-certificates помечен как установленный вручную.
+Уже установлен пакет software-properties-common самой новой версии (0.99.49.1).
+software-properties-common помечен как установленный вручную.
+Следующие пакеты устанавливались автоматически и больше не требуются:
+  linux-headers-6.8.0-45 linux-headers-6.8.0-45-generic
+  linux-image-6.8.0-45-generic linux-modules-6.8.0-45-generic
+  linux-modules-extra-6.8.0-45-generic linux-tools-6.8.0-45
+  linux-tools-6.8.0-45-generic nginx nginx-common
+Для их удаления используйте «sudo apt autoremove».
+Следующие НОВЫЕ пакеты будут установлены:
+  apt-transport-https curl gnupg-agent
+Обновлено 0 пакетов, установлено 3 новых пакетов, для удаления отмечено 0 пакетов, и 3 пакетов не обновлено.
+Необходимо скачать 235 kB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 597 kB.
+Пол:1 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 apt-transport-https all 2.7.14build2 [3 974 B]
+Пол:2 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.6 [226 kB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 gnupg-agent all 2.4.4-2ubuntu17 [4 672 B]
+Получено 235 kB за 0с (1 000 kB/s)  
+Выбор ранее не выбранного пакета apt-transport-https.
+(Чтение базы данных … на данный момент установлено 228749 файлов и каталогов.)
+Подготовка к распаковке …/apt-transport-https_2.7.14build2_all.deb …
+Распаковывается apt-transport-https (2.7.14build2) …
+Выбор ранее не выбранного пакета curl.
+Подготовка к распаковке …/curl_8.5.0-2ubuntu10.6_amd64.deb …
+Распаковывается curl (8.5.0-2ubuntu10.6) …
+Выбор ранее не выбранного пакета gnupg-agent.
+Подготовка к распаковке …/gnupg-agent_2.4.4-2ubuntu17_all.deb …
+Распаковывается gnupg-agent (2.4.4-2ubuntu17) …
+Настраивается пакет apt-transport-https (2.7.14build2) …
+Настраивается пакет gnupg-agent (2.4.4-2ubuntu17) …
+Настраивается пакет curl (8.5.0-2ubuntu10.6) …
+Обрабатываются триггеры для man-db (2.12.0-4build2) …
+mihail@mihailWB:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+Файл '/usr/share/keyrings/docker-archive-keyring.gpg' существует. Записать поверх? (y/N) y
+mihail@mihailWB:~$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+Репозиторий: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable'
+Описание:
+Archive for codename: noble components: stable
+Дополнительные сведения: https://download.docker.com/linux/ubuntu
+Добавление репозитория.
+Нажмите [ENTER] для продолжения или Ctrl-C для отмены.
+Найдена существующая запись deb в /etc/apt/sources.list.d/docker.list
+Обновление существующей записи вместо использования /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-noble.list
+Найдена существующая запись deb-src в /etc/apt/sources.list.d/docker.list
+Добавление отключенной записи deb-src в /etc/apt/sources.list.d/docker.list
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu noble InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu noble-updates InRelease              
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu noble-backports InRelease            
+Сущ:4 http://security.ubuntu.com/ubuntu noble-security InRelease               
+Сущ:5 https://download.docker.com/linux/ubuntu noble InRelease                 
+Чтение списков пакетов… Готово            
+mihail@mihailWB:~$ sudo apt update
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu noble InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu noble-updates InRelease              
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu noble-backports InRelease            
+Сущ:4 https://download.docker.com/linux/ubuntu noble InRelease                 
+Сущ:5 http://security.ubuntu.com/ubuntu noble-security InRelease               
+Чтение списков пакетов… Готово                                                 
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Может быть обновлено 3 пакета. Запустите «apt list --upgradable» для их показа.
+mihail@mihailWB:~$ sudo apt install docker-ce -y
+Чтение списков пакетов… Готово
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Следующие пакеты устанавливались автоматически и больше не требуются:
+  linux-headers-6.8.0-45 linux-headers-6.8.0-45-generic
+  linux-image-6.8.0-45-generic linux-modules-6.8.0-45-generic
+  linux-modules-extra-6.8.0-45-generic linux-tools-6.8.0-45
+  linux-tools-6.8.0-45-generic nginx nginx-common
+Для их удаления используйте «sudo apt autoremove».
+Будут установлены следующие дополнительные пакеты:
+  containerd.io docker-buildx-plugin docker-ce-cli docker-ce-rootless-extras
+  docker-compose-plugin git git-man liberror-perl libslirp0 pigz slirp4netns
+Предлагаемые пакеты:
+  aufs-tools cgroupfs-mount | cgroup-lite git-daemon-run | git-daemon-sysvinit
+  git-doc git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+Следующие НОВЫЕ пакеты будут установлены:
+  containerd.io docker-buildx-plugin docker-ce docker-ce-cli
+  docker-ce-rootless-extras docker-compose-plugin git git-man liberror-perl
+  libslirp0 pigz slirp4netns
+Обновлено 0 пакетов, установлено 12 новых пакетов, для удаления отмечено 0 пакетов, и 3 пакетов не обновлено.
+Необходимо скачать 129 MB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 470 MB.
+Пол:1 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 pigz amd64 2.8-1 [65,6 kB]
+Пол:2 http://ru.archive.ubuntu.com/ubuntu noble/main amd64 liberror-perl all 0.17029-2 [25,6 kB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 git-man all 1:2.43.0-1ubuntu7.1 [1 100 kB]
+Пол:4 https://download.docker.com/linux/ubuntu noble/stable amd64 containerd.io amd64 1.7.24-1 [29,5 MB]
+Пол:5 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 git amd64 1:2.43.0-1ubuntu7.1 [3 679 kB]
+Пол:6 http://ru.archive.ubuntu.com/ubuntu noble/main amd64 libslirp0 amd64 4.7.0-1ubuntu3 [63,8 kB]
+Пол:7 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 slirp4netns amd64 1.2.1-1build2 [34,9 kB]
+Пол:8 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-buildx-plugin amd64 0.19.3-1~ubuntu.24.04~noble [30,7 MB]
+Пол:9 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce-cli amd64 5:27.4.1-1~ubuntu.24.04~noble [15,1 MB]
+Пол:10 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce amd64 5:27.4.1-1~ubuntu.24.04~noble [25,9 MB]
+Пол:11 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce-rootless-extras amd64 5:27.4.1-1~ubuntu.24.04~noble [9 589 kB]
+Пол:12 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-compose-plugin amd64 2.32.1-1~ubuntu.24.04~noble [12,8 MB]
+Получено 129 MB за 2мин 7с (1 009 kB/s)                                        
+Выбор ранее не выбранного пакета pigz.
+(Чтение базы данных … на данный момент установлено 228764 файла и каталога.)
+Подготовка к распаковке …/00-pigz_2.8-1_amd64.deb …
+Распаковывается pigz (2.8-1) …
+Выбор ранее не выбранного пакета containerd.io.
+Подготовка к распаковке …/01-containerd.io_1.7.24-1_amd64.deb …
+Распаковывается containerd.io (1.7.24-1) …
+Выбор ранее не выбранного пакета docker-buildx-plugin.
+Подготовка к распаковке …/02-docker-buildx-plugin_0.19.3-1~ubuntu.24.04~noble_am
+d64.deb …
+Распаковывается docker-buildx-plugin (0.19.3-1~ubuntu.24.04~noble) …
+Выбор ранее не выбранного пакета docker-ce-cli.
+Подготовка к распаковке …/03-docker-ce-cli_5%3a27.4.1-1~ubuntu.24.04~noble_amd64
+.deb …
+Распаковывается docker-ce-cli (5:27.4.1-1~ubuntu.24.04~noble) …
+Выбор ранее не выбранного пакета docker-ce.
+Подготовка к распаковке …/04-docker-ce_5%3a27.4.1-1~ubuntu.24.04~noble_amd64.deb
+ …
+Распаковывается docker-ce (5:27.4.1-1~ubuntu.24.04~noble) …
+Выбор ранее не выбранного пакета docker-ce-rootless-extras.
+Подготовка к распаковке …/05-docker-ce-rootless-extras_5%3a27.4.1-1~ubuntu.24.04
+~noble_amd64.deb …
+Распаковывается docker-ce-rootless-extras (5:27.4.1-1~ubuntu.24.04~noble) …
+Выбор ранее не выбранного пакета docker-compose-plugin.
+Подготовка к распаковке …/06-docker-compose-plugin_2.32.1-1~ubuntu.24.04~noble_a
+md64.deb …
+Распаковывается docker-compose-plugin (2.32.1-1~ubuntu.24.04~noble) …
+Выбор ранее не выбранного пакета liberror-perl.
+Подготовка к распаковке …/07-liberror-perl_0.17029-2_all.deb …
+Распаковывается liberror-perl (0.17029-2) …
+Выбор ранее не выбранного пакета git-man.
+Подготовка к распаковке …/08-git-man_1%3a2.43.0-1ubuntu7.1_all.deb …
+Распаковывается git-man (1:2.43.0-1ubuntu7.1) …
+Выбор ранее не выбранного пакета git.
+Подготовка к распаковке …/09-git_1%3a2.43.0-1ubuntu7.1_amd64.deb …
+Распаковывается git (1:2.43.0-1ubuntu7.1) …
+Выбор ранее не выбранного пакета libslirp0:amd64.
+Подготовка к распаковке …/10-libslirp0_4.7.0-1ubuntu3_amd64.deb …
+Распаковывается libslirp0:amd64 (4.7.0-1ubuntu3) …
+Выбор ранее не выбранного пакета slirp4netns.
+Подготовка к распаковке …/11-slirp4netns_1.2.1-1build2_amd64.deb …
+Распаковывается slirp4netns (1.2.1-1build2) …
+Настраивается пакет liberror-perl (0.17029-2) …
+Настраивается пакет docker-buildx-plugin (0.19.3-1~ubuntu.24.04~noble) …
+Настраивается пакет containerd.io (1.7.24-1) …
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service →
+ /usr/lib/systemd/system/containerd.service.
+Настраивается пакет docker-compose-plugin (2.32.1-1~ubuntu.24.04~noble) …
+Настраивается пакет docker-ce-cli (5:27.4.1-1~ubuntu.24.04~noble) …
+Настраивается пакет libslirp0:amd64 (4.7.0-1ubuntu3) …
+Настраивается пакет pigz (2.8-1) …
+Настраивается пакет git-man (1:2.43.0-1ubuntu7.1) …
+Настраивается пакет docker-ce-rootless-extras (5:27.4.1-1~ubuntu.24.04~noble) …
+Настраивается пакет slirp4netns (1.2.1-1build2) …
+Настраивается пакет docker-ce (5:27.4.1-1~ubuntu.24.04~noble) …
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /us
+r/lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /usr/li
+b/systemd/system/docker.socket.
+Настраивается пакет git (1:2.43.0-1ubuntu7.1) …
+Обрабатываются триггеры для man-db (2.12.0-4build2) …
+Обрабатываются триггеры для libc-bin (2.39-0ubuntu8.3) …
+mihail@mihailWB:~$ sudo docker run -it ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+de44b265507a: Pull complete 
+Digest: sha256:80dd3c3b9c6cecb9f1667e9290b3bc61b78c2678c02cbdae5f0fea92cc6734ab
+Status: Downloaded newer image for ubuntu:latest
+root@5b274ecbf519:/# mkdir nginx-php
+root@5b274ecbf519:/# cd nginx-php
+root@5b274ecbf519:~# 
+exit
+mihail@mihailWB:~$ nano Dockerfile
+mihail@mihailWB:~$ nano default.conf
+mihail@mihailWB:~$ sudo docker build -t nginx-php .
+[+] Building 223.4s (8/8) FINISHED                               docker:default
+ => [internal] load build definition from Dockerfile                       0.0s
+ => => transferring dockerfile: 188B                                       0.0s
+ => [internal] load metadata for docker.io/library/php:7.4-fpm             2.0s
+ => [internal] load .dockerignore                                          0.0s
+ => => transferring context: 2B                                            0.0s
+ => [1/3] FROM docker.io/library/php:7.4-fpm@sha256:3ac7c8c74b2b047c7cb  168.9s
+ => => resolve docker.io/library/php:7.4-fpm@sha256:3ac7c8c74b2b047c7cb27  0.0s
+ => => sha256:7c6a2cba718f37c4b3ca3486476c7d3dc68dc3ea9b1 2.41kB / 2.41kB  0.0s
+ => => sha256:38f2b691dcb8c6d4630caa2999173e35be341f2f1 11.38kB / 11.38kB  0.0s
+ => => sha256:c428f1a494230852524a2a5957cc5199c36c8b403305e0e 226B / 226B  0.5s
+ => => sha256:156740b07ef8a632f9f7bea4e57e4ee5541ade3 91.63MB / 91.63MB  165.4s
+ => => sha256:3ac7c8c74b2b047c7cb273469d74fc0d59b857aa440 1.86kB / 1.86kB  0.0s
+ => => sha256:a603fa5e3b4127f210503aaa6189abf6286ee5a 31.41MB / 31.41MB  112.2s
+ => => sha256:fb5a4c8af82f00730b7427e47bda7f76cea2e2b9aea4217 270B / 270B  2.2s
+ => => sha256:972155ae644b037435eddf206152975f6fd3eaeb 10.74MB / 10.74MB  50.6s
+ => => sha256:a8e3b94fe6c130216f4567f987d8a71cfebc44bb098f9f 491B / 491B  51.2s
+ => => sha256:93346a3f46bcefa9de4ea57b9043f0b79042a32 25.40MB / 25.40MB  119.1s
+ => => sha256:b922b67ca46b30a57ae7fa2105d7e0bfb954b004a 2.45kB / 2.45kB  112.8s
+ => => extracting sha256:a603fa5e3b4127f210503aaa6189abf6286ee5a73deeaab4  1.3s
+ => => sha256:6137f893bda625dc11ea72d9c226f43b358e49cd9284c 246B / 246B  113.0s
+ => => sha256:79b1a1b78461157a10b5103e206874c1417e79236 8.44kB / 8.44kB  113.3s
+ => => extracting sha256:c428f1a494230852524a2a5957cc5199c36c8b403305e0e8  0.0s
+ => => extracting sha256:156740b07ef8a632f9f7bea4e57e4ee5541ade376adf9169  2.6s
+ => => extracting sha256:fb5a4c8af82f00730b7427e47bda7f76cea2e2b9aea42175  0.0s
+ => => extracting sha256:972155ae644b037435eddf206152975f6fd3eaeb1ddeb632  0.0s
+ => => extracting sha256:a8e3b94fe6c130216f4567f987d8a71cfebc44bb098f9f1d  0.0s
+ => => extracting sha256:93346a3f46bcefa9de4ea57b9043f0b79042a32652169f83  0.6s
+ => => extracting sha256:b922b67ca46b30a57ae7fa2105d7e0bfb954b004a70d0809  0.0s
+ => => extracting sha256:6137f893bda625dc11ea72d9c226f43b358e49cd9284c6cb  0.0s
+ => => extracting sha256:79b1a1b78461157a10b5103e206874c1417e79236e89515a  0.0s
+ => [internal] load build context                                          0.0s
+ => => transferring context: 400B                                          0.0s
+ => [2/3] RUN apt-get update && apt-get install -y nginx                  52.1s
+ => [3/3] COPY default.conf /etc/nginx/conf.d/default.conf                 0.1s
+ => exporting to image                                                     0.1s
+ => => exporting layers                                                    0.1s
+ => => writing image sha256:4dfbc6d8a41f8a32c8db1b8c9f2f25a51131e5d260faf  0.0s
+ => => naming to docker.io/library/nginx-php                               0.0s
+
+ 1 warning found (use docker --debug to expand):
+ - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 4)
+mihail@mihailWB:~$ sudo docker run -d -p 80:80 nginx-php
+f229f3261bdac6b67bba22dbe3bcd3cc220db65eb5945c7c82cb4d125e529370
+docker: Error response from daemon: driver failed programming external connectivity on endpoint condescending_beaver (8327878b980d7ca78d443f031ed7cd4de246ee9d1755f17910b458481877d039): failed to bind port 0.0.0.0:80/tcp: Error starting userland proxy: listen tcp4 0.0.0.0:80: bind: address already in use.
+mihail@mihailWB:~$ sudo docker run -d -p 8080:80 nginx-php
+34f187ef8dcc854be366b64f7acc5fc87e6987b01437a12e1cccc7f8adb87ed0
