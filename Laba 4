@@ -1,0 +1,50 @@
+mihail@mihailWB:~$ echo "ZZZ" > file1
+mihail@mihailWB:~$ cat file1
+ZZZ
+mihail@mihailWB:~$ cp file1 file2
+mihail@mihailWB:~$ cat file2
+ZZZ
+mihail@mihailWB:~$ ln -s file1 file3
+mihail@mihailWB:~$ cat file3
+ZZZ
+mihail@mihailWB:~$  ln file1 file4
+mihail@mihailWB:~$ cat file4
+ZZZ
+mihail@mihailWB:~$ ls -i file1 file2 file3 file4
+132240 file1  138145 file2  138219 file3  132240 file4
+mihail@mihailWB:~$ rm file1
+mihail@mihailWB:~$  cat file1 file2 file3 file4
+cat: file1: Нет такого файла или каталога
+ZZZ
+cat: file3: Нет такого файла или каталога
+ZZZ
+mihail@mihailWB:~$ mv file2 file22
+mihail@mihailWB:~$ cat file22
+ZZZ
+mihail@mihailWB:~$ mv file3 file33 
+mihail@mihailWB:~$ mv file4 file44
+mihail@mihailWB:~$ cat file44
+ZZZ
+mihail@mihailWB:~$ cat file33
+cat: file33: Нет такого файла или каталога
+mihail@mihailWB:~$ echo "Z" > file33
+mihail@mihailWB:~$ cat file33
+Z
+mihail@mihailWB:~$ ln -s file22 lfile22
+mihail@mihailWB:~$ cat lfile22
+ZZZ
+mihail@mihailWB:~$ mkdir /tmp/ndd
+mihail@mihailWB:~$ mv file33 file44 lfile22 /tmp/ndd
+mihail@mihailWB:~$ touch file5 file6
+mihail@mihailWB:~$ echo "A" > file5
+mihail@mihailWB:~$ cat file5
+A
+mihail@mihailWB:~$ echo "B" > file6
+mihail@mihailWB:~$ cat file6
+B
+mihail@mihailWB:~$ chmod 664 file5
+mihail@mihailWB:~$ cat file5
+A
+mihail@mihailWB:~$ chmod 600 file6
+mihail@mihailWB:~$ cat file6
+B
