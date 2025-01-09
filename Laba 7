@@ -1,0 +1,22 @@
+mihail@mihailWB:~$ ps aux | grep bash
+mihail      3303  0.0  0.0  19692  5248 pts/0    Ss   19:34   0:00 bash
+mihail      3310  0.0  0.0  17836  2304 pts/0    S+   19:34   0:00 grep --color=auto bash
+mihail@mihailWB:~$ ps -p 3303 -o pid,ppid,comm
+    PID    PPID COMMAND
+   3303    3296 bash
+mihail@mihailWB:~$ ps --ppid 3303
+    PID TTY          TIME CMD
+   3315 pts/0    00:00:00 ps
+mihail@mihailWB:~$ ps aux | grep ssh
+mihail      1878  0.0  0.0 162652  6784 ?        Ssl  19:22   0:00 /usr/libexec/gcr-ssh-agent --base-dir /run/user/1000/gcr
+mihail      3317  0.0  0.0  17836  2304 pts/0    S+   19:35   0:00 grep --color=auto ssh
+mihail@mihailWB:~$ ps -p 1878 -o pid,ppid,comm
+    PID    PPID COMMAND
+   1878    1718 gcr-ssh-agent
+mihail@mihailWB:~$ ps --ppid 1878
+    PID TTY          TIME CMD
+mihail@mihailWB:~$ pstree -p 1878
+gcr-ssh-agent(1878)─┬─{gcr-ssh-agent}(1888)
+                    └─{gcr-ssh-agent}(1889)
+mihail@mihailWB:~$ pstree -p 3303
+bash(3303)───pstree(3321)
