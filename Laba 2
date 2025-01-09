@@ -1,0 +1,84 @@
+mihail@mihailWB:~$ sudo adduser pivo
+[sudo] пароль для mihail: 
+info: Добавляется пользователь «pivo» ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Добавляется новая группа «pivo» (1001) ...
+info: Adding new user `pivo' (1001) with group `pivo (1001)' ...
+info: Создаётся домашний каталог «/home/pivo» ...
+info: Копирование файлов из «/etc/skel» ...
+Новый пароль: 
+НЕУДАЧНЫЙ ПАРОЛЬ: Пароль содержит имя пользователя в той или иной форме
+Повторите ввод нового пароля: 
+passwd: пароль успешно обновлён
+Изменение информации о пользователе pivo
+Введите новое значение или нажмите ENTER для выбора значения по умолчанию
+ Полное имя []: 
+ Номер комнаты []: 
+ Рабочий телефон []: 
+ Домашний телефон []: 
+ Другое []: 
+Данная информация корректна? [Y/n] Y
+info: Adding new user `pivo' to supplemental / extra groups `users' ...
+info: Добавляется пользователь «pivo» в группу «users» ...
+
+mihail@mihailWB:~$ cat /etc/passwd | grep pivo
+pivo:x:1001:1001:,,,:/home/pivo:/bin/bash
+mihail@mihailWB:~$ sudo cat /etc/shadow | grep pivo
+pivo:$y$j9T$TNzMXj71iRMhfBn6ghuwJ1$QVMhfXirqUUdWHgOLuVE7DVXFVBTV8MvtYeNb6gXxKC:20006:0:99999:7:::
+mihail@mihailWB:~$ cat /etc/group | grep pivo
+users:x:100:mihail,pivo
+pivo:x:1001:
+
+mihail@mihailWB:~$ sudo deluser --remove-home pivo
+info: Идёт поиск файлов для сохранения/удаления ...
+info: Удаляются файлы ...
+info: Удаляется crontab ...
+info: Удаляется пользователь «pivo» ...
+
+mihail@mihailWB:~$ sudo groupadd gg
+mihail@mihailWB:~$ sudo usermod -g gg mihail
+mihail@mihailWB:~$ sudo usermod -aG gg mihail
+mihail@mihailWB:~$ sudo gpasswd -d mihail gg
+Удаление пользователя mihail из группы gg
+
+mihail@mihailWB:~$ sudo adduser pivo1
+info: Добавляется пользователь «pivo1» ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Добавляется новая группа «pivo1» (1002) ...
+info: Adding new user `pivo1' (1002) with group `pivo1 (1002)' ...
+info: Создаётся домашний каталог «/home/pivo1» ...
+info: Копирование файлов из «/etc/skel» ...
+Новый пароль: 
+НЕУДАЧНЫЙ ПАРОЛЬ: Пароль не прошел проверку орфографии - не содержит достаточное число РАЗЛИЧНЫХ символов
+Повторите ввод нового пароля: 
+passwd: пароль успешно обновлён
+Изменение информации о пользователе pivo1
+Введите новое значение или нажмите ENTER для выбора значения по умолчанию
+ Полное имя []: 
+ Номер комнаты []: 
+ Рабочий телефон []: 
+ Домашний телефон []: 
+ Другое []: 
+Данная информация корректна? [Y/n] Y
+info: Adding new user `pivo1' to supplemental / extra groups `users' ...
+info: Добавляется пользователь «pivo1» в группу «users» ...
+mihail@mihailWB:~$ sudo adduser pivo1 sudo
+info: Добавляется пользователь «pivo1» в группу «sudo» ...
+mihail@mihailWB:~$ groups pivo1
+pivo1 : pivo1 sudo users
+
+ihail@mihailWB:~$ sudo visudo
+mihail@mihailWB:~$ su - pivo2
+Пароль: 
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+pivo2@mihailWB:~$ sudo apt update
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu noble InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu noble-updates InRelease      
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu noble-backports InRelease    
+Сущ:4 http://security.ubuntu.com/ubuntu noble-security InRelease       
+Чтение списков пакетов… Готово            
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Может быть обновлено 45 пакетов. Запустите «apt list --upgradable» для их показа.
